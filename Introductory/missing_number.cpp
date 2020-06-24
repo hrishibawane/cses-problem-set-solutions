@@ -27,8 +27,7 @@ int main()
     for(ll i=0; i<n-1; i++)
         cin>>x, asum+=x;
     
-    for(ll i=1; i<=n; i++)
-        rsum+=i;
+    rsum = n*(n+1)/2;
     
     cout<<rsum-asum<<'\n';
 }
