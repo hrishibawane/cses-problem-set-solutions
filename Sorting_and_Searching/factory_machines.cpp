@@ -24,33 +24,27 @@ int fun(ll val, ll n, ll t, vector<ll>& arr)
 	for(int i = 0; i<n; i++)
 	{
 		ll x = val/arr[i] ;
-		if(t - check <= x) 
-			return 1;
+		if(t - check <= x) return 1;
 		check += x;
 	}
 	return 0 ;
 }
 
-int main(){
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
+int main()
+{
+	FASTIO;
 	ll n, t;
 	cin>>n>>t;
 	vector<ll> arr(200005);
-	for(int i = 0; i<n; i++) 
-        cin>>arr[i];
+	for(int i=0; i<n; i++) 
+        	cin>>arr[i];
 
 	ll high = 1e18 + 9 , low = 0;
 	while(high > low + 1)
     	{
 		ll mid = (high + low)/2;
-		if(fun(mid, n, t, arr)) 
-            		high = mid;
-		else 
-        	    	low = mid;
+		if(fun(mid, n, t, arr)) high = mid;
+		else low = mid;
 	}
-	if(fun(low, n, t, arr))
-		cout<<low<<"\n";
-	else 
-		cout<<high<<"\n";
+	fun(low, n, t, arr) ? cout<<low<<"\n" : cout<<high<<"\n";
 }
