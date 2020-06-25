@@ -42,12 +42,12 @@ int main(){
 
 	ll high = 1e18 + 9 , low = 0;
 	while(high > low + 1)
-    {
+    	{
 		ll mid = (high + low)/2;
 		if(fun(mid, n, t, arr)) 
-            high = mid;
+            		high = mid;
 		else 
-            low = mid;
+        	    	low = mid;
 	}
 	if(fun(low, n, t, arr))
 		cout<<low<<"\n";
