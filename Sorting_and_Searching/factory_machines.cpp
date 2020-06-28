@@ -18,16 +18,33 @@ typedef tree<ll, null_type, less_equal<ll>, rb_tree_tag, tree_order_statistics_n
 typedef tree<ll, ll, less_equal<ll>, rb_tree_tag, tree_order_statistics_node_update> ordered_map;
  
  
+int fun(ll val, ll n, ll t, vector<ll>& arr)
+{
+	ll check = 0 ;
+	for(int i = 0; i<n; i++)
+	{
+		ll x = val/arr[i] ;
+		if(t - check <= x) return 1;
+		check += x;
+	}
+	return 0 ;
+}
+
 int main()
 {
-    FASTIO;
-    ll n, x;
-    cin>>n;
-    ll asum=0, rsum=0;
-    for(ll i=0; i<n-1; i++)
-        cin>>x, asum+=x;
-    
-    rsum = n*(n+1)/2;
-    
-    cout<<rsum-asum<<'\n';
+	FASTIO;
+	ll n, t;
+	cin>>n>>t;
+	vector<ll> arr(200005);
+	for(int i=0; i<n; i++) 
+        	cin>>arr[i];
+
+	ll high = 1e18 + 9 , low = 0;
+	while(high > low + 1)
+    	{
+		ll mid = (high + low)/2;
+		if(fun(mid, n, t, arr)) high = mid;
+		else low = mid;
+	}
+	fun(low, n, t, arr) ? cout<<low<<"\n" : cout<<high<<"\n";
 }
